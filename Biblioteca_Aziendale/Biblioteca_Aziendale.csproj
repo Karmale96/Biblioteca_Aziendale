@@ -8,8 +8,18 @@
 
   <ItemGroup>
     <None Remove="System.Data.SqlClient" />
+    <None Remove="Views\" />
+    <None Remove="Models\" />
+    <None Remove="Views\Home\" />
+    <None Remove="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>
