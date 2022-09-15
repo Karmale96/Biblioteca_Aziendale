@@ -7,7 +7,7 @@ CREATE TABLE Libri
     titolo VARCHAR(200),
     nPagine INT,
     genere VARCHAR(50),
-    nCopie INT,
+    scaffale INT,
     annoPubblicazione INT
 )
 
@@ -27,6 +27,8 @@ CREATE TABLE Utenti
     dob DATE,
     indirizzo VARCHAR(100),
     userAdmin BIT,
+    username VARCHAR(100),
+    psw VARCHAR(100)
 )
 
 CREATE TABLE ScrittoDa
