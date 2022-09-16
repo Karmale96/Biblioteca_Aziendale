@@ -45,12 +45,12 @@ CREATE TABLE ScrittoDa
 CREATE TABLE inPrestito
 (
     id INT IDENTITY(1,1) PRIMARY KEY,
+    dataInizio DATE,
+    dataFine DATE,
     idUtente INT FOREIGN KEY REFERENCES Utenti(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     idLibro INT FOREIGN KEY REFERENCES Libri(id)
     ON UPDATE CASCADE
-    ON DELETE CASCADE,
-    dataInizio DATE,
-    dataFine DATE
+    ON DELETE CASCADE
 )
