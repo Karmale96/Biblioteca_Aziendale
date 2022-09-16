@@ -10,7 +10,7 @@ CREATE TABLE Libri
     copertina VARCHAR(1000),
     nPagine INT,
     genere VARCHAR(50),
-    scaffale INT,
+    scaffale VARCHAR(5),
     annoPubblicazione INT
 )
 
