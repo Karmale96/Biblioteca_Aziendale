@@ -11,7 +11,8 @@ CREATE TABLE Libri
     nPagine INT,
     genere VARCHAR(50),
     scaffale VARCHAR(5),
-    annoPubblicazione INT
+    annoPubblicazione INT,
+    casaEditrice VARCHAR(100)
 )
 
 CREATE TABLE Autori
