@@ -6,7 +6,7 @@ CREATE TABLE Libri
     id INT IDENTITY(1,1) PRIMARY KEY,
     titolo VARCHAR(200),
     isbn VARCHAR(13),
-    descrizione VARCHAR(500),
+    descrizione VARCHAR(5000),
     copertina VARCHAR(1000),
     nPagine INT,
     genere VARCHAR(50),
