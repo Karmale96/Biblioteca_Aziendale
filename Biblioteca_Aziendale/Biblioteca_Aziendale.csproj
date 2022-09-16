@@ -12,6 +12,7 @@
     <None Remove="Models\" />
     <None Remove="Views\Home\" />
     <None Remove="Controllers\" />
+    <None Remove="Utility" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
@@ -21,5 +22,10 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Utility">
+      <HintPath>..\..\CollegamentoDB\Utility\bin\Debug\net6.0\Utility.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
