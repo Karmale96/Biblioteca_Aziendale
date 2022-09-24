@@ -12,6 +12,7 @@
     <None Remove="Views\Home\" />
     <None Remove="Controllers\" />
     <None Remove="Utility" />
+    <None Remove="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
@@ -20,6 +21,7 @@
     <Folder Include="Views\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Utility">

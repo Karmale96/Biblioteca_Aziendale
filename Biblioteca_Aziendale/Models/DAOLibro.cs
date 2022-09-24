@@ -48,10 +48,11 @@ namespace Biblioteca_Aziendale.Models
                            $"titolo = '{libro.Titolo}'," +
                            $"descrizione = '{libro.Descrizione}'," +
                            $"copertina = '{libro.Copertina}'," +
-                           $"npagine = {libro.NPagine} " +
-                           $"genere = '{libro.Genere}' " +
-                           $"scaffale = '{libro.Scaffale}' " +
-                           $"annoPubblicazione = {libro.AnnoPubblicazione} " +
+                           $"npagine = {libro.NPagine}," +
+                           $"genere = '{libro.Genere}'," +
+                           $"scaffale = '{libro.Scaffale}'," +
+                           $"annoPubblicazione = {libro.AnnoPubblicazione}," +
+                           $"casaEditrice = '{libro.CasaEditrice}' " +
                            $"WHERE id = {libro.Id}";
 
             return db.Send(query);
@@ -62,9 +63,9 @@ namespace Biblioteca_Aziendale.Models
             Libro libro = (Libro)e;
 
             string query = $"INSERT INTO Libri " +
-                           $"(titolo, descrizione, copertina, nPagine, genere, scaffale, annoPubblicazione) " +
+                           $"(titolo, descrizione, copertina, nPagine, genere, scaffale, annoPubblicazione, casaEditrice) " +
                            $"VALUES " +
-                           $"('{libro.Titolo}','{libro.Descrizione}','{libro.Copertina}',{libro.NPagine},'{libro.Genere}','{libro.Scaffale}',{libro.AnnoPubblicazione})";
+                           $"('{libro.Titolo}','{libro.Descrizione}','{libro.Copertina}',{libro.NPagine},'{libro.Genere}','{libro.Scaffale}',{libro.AnnoPubblicazione},'{libro.CasaEditrice}')";
 
             return db.Send(query);
         }
