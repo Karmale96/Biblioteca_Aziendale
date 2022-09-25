@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Biblioteca Aziendale - Registrazione</title>
+    <script src="~/js/Login/ControlliLogin.js"></script>
+</head>
+<body>
+    <form style="margin-left:10px;margin-top:10%;" action="/Login/Salva" onsubmit="return controlla_registrazione()">
+        <div class="mb-2">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Cognome</label>
+            <input type="text" class="form-control" id="cognome" name="cognome">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Data di Nascita</label>
+            <input type="date" class="form-control" id="dob" name="dob">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Indirizzo</label>
+            <input type="text" class="form-control" id="indirizzo" name="indirizzo">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Ruolo</label>
+            <input type="hidden" value="user" class="form-control" id="ruolo" name="ruolo">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" id="user" name="username">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="psw" name="psw">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Inserisci di nuovo la Password</label>
+            <input type="password" class="form-control" id="psw2">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Registrati" />
+    </form>
+</body>
+</html>

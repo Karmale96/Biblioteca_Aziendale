@@ -31,6 +31,23 @@ namespace Biblioteca_Aziendale.Controllers
             return View(chiamata);
         }
 
+        public IActionResult Registrazione()
+        {
+            return View();
+        }
+
+        public IActionResult Salva(Dictionary<string, string> parametri)
+        {
+            Utente u = new Utente();
+
+            u.FromDictionary(parametri);
+
+            if (DAOUtente.GetInstance().Inserisci(u))
+                return Content("Registrazione avvenuta con successo");
+            else
+                return Content("Registrazione fallita");
+        }
+
         public IActionResult Valida(Dictionary<string, string> parametri)
         {
             if (DAOUtente.GetInstance().Valida(parametri["username"], parametri["psw"]))
@@ -39,11 +56,35 @@ namespace Biblioteca_Aziendale.Controllers
                 il.LogInformation($"UTENTE LOGGATO: {parametri["username"]}");
 
                 utenteLoggato = DAOUtente.GetInstance().Cerca(parametri["username"]);
-
-                return RedirectToAction("Index", "Home");
+                if(utenteLoggato.Ruolo == "admin")
+                {
+                    return RedirectToAction("Admin", "Login");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             else
                 return Redirect("Index");
+        }
+
+        public IActionResult Admin()
+        {
+            chiamata++;
+
+            il.LogInformation($"Tentativo Numero: {chiamata}");
+            return View(chiamata);
+        }
+
+        public IActionResult Logout()
+        {
+            chiamata = -1;
+            il.LogInformation($"LOGOUT: {utenteLoggato.Username}");
+            utenteLoggato = null;
+
+            return Redirect("Index");
         }
     }
 }
