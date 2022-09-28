@@ -1,0 +1,83 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.card{
+    text-align: center;
+}
+
+.vetrina{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.copertinaHome{
+    margin-bottom: 5%;
+}
+
+/* stile della search-bar INIZIO */
+
+.searchbar{
+    display: grid;
+    margin-top: 100px;
+    margin-bottom: 15%;
+  }
+  
+.form-group{
+    justify-self: center;
+    align-self: center;
+    border: 3px solid red;
+    width: 420px;
+    border-radius: 26px;
+    padding: 5px 15px;
+}
+  
+.form-control{
+    width: 350px;
+    height: 40px;
+    border : none;
+}
+  
+.search-btn{
+    float: right;
+    width: 34px;
+    height: 36px;
+    margin-top: -40px;
+    margin-right: -5px;
+    border: none;
+    background: #fff;
+}
+  
+input[type="text"]{
+  outline: none;
+  box-shadow: none !important;
+}
+
+/* stile della search-bar FINE */
+
+.titolo-home{
+    text-align: center;
+    font-size: 48px;
+}
+
+.container-titolo{
+    margin-top: 150px;
+
+}
+
+.subtit-home{
+    text-align: center;
+}
+
+footer{
+    background-color: rgb(195, 50, 50);
+}
+
+.container{
+    margin-bottom: 200px;
+}

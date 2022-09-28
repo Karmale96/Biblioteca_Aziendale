@@ -22,10 +22,16 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="wwwroot\js\Login\" />
+    <Folder Include="wwwroot\css\Elenco\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Utility">
       <HintPath>..\..\CollegamentoDB\Utility\bin\Debug\net6.0\Utility.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\Login\" />
+    <Content Remove="wwwroot\css\Elenco\" />
   </ItemGroup>
 </Project>

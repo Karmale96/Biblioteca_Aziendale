@@ -86,6 +86,11 @@ namespace Biblioteca_Aziendale.Controllers
 
             return Redirect("Index");
         }
+
+        public IActionResult ElencoAdmin()
+        {
+            return View(DAOLibro.GetInstance().Read());
+        }
     }
 }
 

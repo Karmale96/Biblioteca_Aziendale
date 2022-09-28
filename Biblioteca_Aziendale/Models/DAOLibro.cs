@@ -35,6 +35,38 @@ namespace Biblioteca_Aziendale.Models
             return ris;
         }
 
+        public List<Entity> ReadDistinct()
+        {
+            List<Entity> ris = new List<Entity>();
+            List<Dictionary<string, string>> tabella = db.Read("SELECT titolo, descrizione, copertina, genere FROM Libri GROUP BY titolo, descrizione, copertina, genere;\n");
+
+            foreach (Dictionary<string, string> riga in tabella)
+            {
+                Libro libro = new Libro();
+                libro.FromDictionary(riga);
+
+                ris.Add(libro);
+            }
+
+            return ris;
+        }
+
+        public List<Entity> ReadLike(string valore)
+        {
+            List<Entity> ris = new List<Entity>();
+            List<Dictionary<string, string>> tabella = db.Read($"SELECT * FROM Libri WHERE titolo LIKE '%{valore}%' ");
+
+            foreach (Dictionary<string, string> riga in tabella)
+            {
+                Libro l = new Libro();
+                l.FromDictionary(riga);
+
+
+                ris.Add(l);
+            }
+            return ris;
+        }
+
         public bool Delete(int id)
         {
             return db.Send($"DELETE FROM Libri WHERE id = {id}");

@@ -1,23 +1,34 @@
 ﻿@model int
-
+@using Biblioteca_Aziendale.Controllers
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+    <script src="~/js/Login/login.js"></script>
 </head>
 <body>
-    <form style="margin-left:10px;margin-top:10%;" action="/Login/Valida" onsubmit="return controlla_login()">
-        <div class="mb-2">
-            <label class="form-label">Username</label>
-            <input type="text" class="form-control" id="user" name="username">
+    <h2>Accedi o Registrati nella BibliotecaWeb Aziendale</h2>
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <form action="/Login/Valida">
+                <h1>Accedi</h1>
+
+                <input type="text" placeholder="Username" id="user" name="username" required />
+                <input type="password" placeholder="Password" id="psw" name="psw" required />
+                <button id="signIn">Accedi</button>
+            </form>
         </div>
-        <div class="mb-2">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" id="psw" name="psw">
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Ciao!</h1>
+                    <p>Nuovo membro dell'azienda? Registrati!</p>
+                    <button class="ghost" id="signUp" onclick="window.location='/Login/Registrazione'">Registrati</button>
+                </div>
+            </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="Accedi" />
-    </form>
-    <p>Non hai ancora un account? <a href="/Login/Registrazione">Registrati</a></p>
+    </div>
 </body>
 </html>

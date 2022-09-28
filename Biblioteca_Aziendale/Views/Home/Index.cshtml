@@ -3,54 +3,151 @@
 @model List<Utility.Entity>
 
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+
     <title>Biblioteca Aziendale</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+    <!-- navbar del sito -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BibliotecaWeb</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <li class="nav-item">
-                    @if (LoginController.utenteLoggato != null)
-                    {
-                    <li class="nav-item"><a href="#" class="nav-link">Ciao @LoginController.utenteLoggato.Nome.ToUpper()</a></li>
-
-                }
-                else
-                {
-                    <a class="nav-link" href="/Login/Index">Accedi</a>
-                }
-
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Elenco Libri</a>
+                    </li>
+
                 </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+                @if (LoginController.utenteLoggato != null)
+                    {
+                    <li class="nav-item" style="list-style-type: none;">
+                <a class="nav-link">Ciao @LoginController.utenteLoggato.Nome </a></li>
+                    }
+                    else
+                    {
+                    <button type="button" class="btn btn-danger" onclick="window.location='/Login/Index'">Log In</button>
+
+                    }
+
+            </div>
         </div>
     </nav>
 
+    <!-- titolo -->
+    <div class="container-titolo">
+        <h1 class="titolo-home">Benvenuto su BibliotecaWeb!</h1>
+        <h2 class="subtit-home">Utilizza la barra di ricerca per trovare il tuo libro.</h2>
+    </div>
+
+    <!-- search-bar -->
+    <form class="searchbar" name="input" action="/Home/ElencoLike/valore" method="get">
+        <div class="form-group">
+            <input id="input" type="text" class="form-control" placeholder="Cerca..." name="valore">
+            <button class="search-btn">
+                <svg class="bi bi-search" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                </svg>
+            </button>
+        </div>
+    </form>
+
+    <!-- card con i libri in vetrina -->
+    <div class="container">
+
+        <h1 class="vetrina">I migliori scelti dallo staff</h1>
+
+        <div class="row">
+            @{int c = 0;}
+                @foreach (Libro p in Model)
+                    {
+            <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h5 class="card-title">@(p.Titolo) @(p.Id)</h5>
+                            <img class="copertinaHome" src="https://images-na.ssl-images-amazon.com/images/I/61xSNpivMML.jpg" width="300px" height="400px" />
+                            <a href="#" class="btn btn-danger">Dettagli</a>
+                        </div>
+                    </div>
+                </div>
+                        c++;
+                        if (c == 6)
+                            break;
+                    }
+            </div>
+    </div>
 
 
+    <!-- Footer -->
+    <footer class="text-center text-white" ">
+        <!-- Grid container -->
+        <div class="container-footer">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <hr class="my-5" />
+
+            <!-- Section: Text -->
+            <section class="mb-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                            distinctio earum repellat quaerat voluptatibus placeat nam,
+                            commodi optio pariatur est quia magnam eum harum corrupti
+                            dicta, aliquam sequi voluptate quas.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Text -->
+            <!-- Section: Social -->
+            <section class="text-center mb-5">
+                <a href="" class="text-white me-4">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fa fa-google" aria-hidden="true"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </section>
+            <!-- Section: Social -->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3"
+             style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2020 Copyright:
+            <a class="text-white" href="#">BibliotecaWeb</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
