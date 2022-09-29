@@ -78,9 +78,10 @@ namespace Biblioteca_Aziendale.Models
 
             string query = $"UPDATE Libri SET " +
                            $"titolo = '{libro.Titolo}'," +
+                           $"isbn = '{libro.Isbn}'," +
                            $"descrizione = '{libro.Descrizione}'," +
                            $"copertina = '{libro.Copertina}'," +
-                           $"npagine = {libro.NPagine}," +
+                           $"nPagine = {libro.NPagine}," +
                            $"genere = '{libro.Genere}'," +
                            $"scaffale = '{libro.Scaffale}'," +
                            $"annoPubblicazione = {libro.AnnoPubblicazione}," +

@@ -91,6 +91,32 @@ namespace Biblioteca_Aziendale.Controllers
         {
             return View(DAOLibro.GetInstance().Read());
         }
+
+        public IActionResult FormModificaAdmin(int id)
+        {
+            Libro l = (Libro)DAOLibro.GetInstance().Find(id);
+
+            return View(l);
+        }
+
+        public IActionResult ModificaLibro(Dictionary<string, string> parametri)
+        {
+            Libro l = new Libro();
+            l.FromDictionary(parametri);
+
+            if (DAOLibro.GetInstance().Update(l))
+                return Redirect("/Login/ElencoAdmin");
+            else
+                return Content("Modifica Fallita");
+        }
+
+        public IActionResult Elimina(int id)
+        {
+            if (DAOLibro.GetInstance().Delete(id))
+                return Redirect("/Login/ElencoAdmin");
+            else
+                return Content("Eliminazione Fallita");
+        }
     }
 }
 

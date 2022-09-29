@@ -1,6 +1,6 @@
-﻿@model List<Utility.Entity>
+﻿@model Biblioteca_Aziendale.Models.Libro
 @using Biblioteca_Aziendale.Controllers
-@using Biblioteca_Aziendale.Models
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +98,7 @@
                     </button>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/Home/Index">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                     </ul>
                     <!-- Topbar Navbar -->
@@ -136,60 +136,53 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 active">Elenco Libri</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="main-box clearfix">
-                                        <div class="table-responsive">
-                                            <table class="table user-list">
-                                                <thead>
-                                                    <tr>
-                                                        <th><span>Titolo</span></th>
-                                                        <th><span>Casa Editrice</span></th>
-                                                        <th><span>Anno Pubblicazione</span></th>
-                                                        <th class="text-center"><span>Disponibile</span></th>
-                                                        <th><span></span></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (Libro l in Model)
-                                                    {
-                                                        <tr>
-                                                            <td>
-                                                                <img src="https://images-na.ssl-images-amazon.com/images/I/61xSNpivMML.jpg" style="width:10%" height="10%" alt="">
-                                                                <a class="user-link">@(l.Titolo)</a>
-                                                            </td>
-                                                            <td>
-                                                                @(l.CasaEditrice)
-                                                            </td>
-                                                            <td>
-                                                                @(l.AnnoPubblicazione)
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <span class="label label-default">Inactive</span>
-                                                            <td style="width: 20%;">
-                                                                <a href="/Login/FormModificaAdmin/@l.Id" class="btn btn-primary">Modifica</a>
+                        <form style="margin-left:10px;margin-top:10px;" action="/Login/ModificaLibro">
+                            <div class="mb-3">
+                                <input type="hidden" class="form-control" id="id" name="id" size="50" value="@Model.Id" readonly>
 
-                                                            </td>
-                                                            <td>
-                                                                <a href="/Login/Elimina/@l.Id" class="btn btn-danger">Elimina</a>
-
-                                                            </td>
-                                                        </tr>
-
-                                                    }
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                                <label class="form-label">Titolo</label>
+                                <input type="text" class="form-control" id="titolo" name="titolo" size="50" value="@Model.Titolo">
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">ISBN</label>
+                                <input type="text" class="form-control" id="isbn" name="isbn" value="@Model.Isbn">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Descrizione</label>
+                                <input type="text" class="form-control" id="descrizione" name="descrizione" value="@Model.Descrizione">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Copertina</label>
+                                <input type="text" class="form-control" id="copertina" name="copertina" value="@Model.Copertina">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Numero Pagine</label>
+                                <input type="number" class="form-control" id="nPagine" name="npagine" value="@Model.NPagine">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Genere</label>
+                                <input type="text" class="form-control" id="genere" name="genere" value="@Model.Genere">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Scaffale</label>
+                                <input type="text" class="form-control" id="scaffale" name="scaffale" value="@Model.Scaffale">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Anno Pubblicazione</label>
+                                <input type="number" class="form-control" id="annoPubblicazione" name="annopubblicazione" value="@Model.AnnoPubblicazione">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Casa Editrice</label>
+                                <input type="text" class="form-control" id="casaEditrice" name="casaeditrice" value="@Model.CasaEditrice">
+                            </div>
+                            
+                            <input type="submit" class="btn btn-primary" value="Modifica" />
+                        </form>
 
                     </div>
 
