@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Biblioteca_Aziendale.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -116,6 +117,22 @@ namespace Biblioteca_Aziendale.Controllers
                 return Redirect("/Login/ElencoAdmin");
             else
                 return Content("Eliminazione Fallita");
+        }
+
+        public IActionResult FormInserimentoAdmin()
+        {
+            return View();
+        }
+
+        public IActionResult NuovoLibro(Dictionary<string,string> parametri)
+        {
+            Libro l = new Libro();
+            l.FromDictionary(parametri);
+
+            if (DAOLibro.GetInstance().Insert(l))
+                return Redirect("/Login/ElencoAdmin");
+            else
+                return Content("Inserimento Fallito");
         }
     }
 }

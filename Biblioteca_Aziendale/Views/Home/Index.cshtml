@@ -31,7 +31,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Elenco Libri</a>
+                        <a class="nav-link" href="/Home/Elenco">Elenco Libri</a>
                     </li>
 
                 </ul>
@@ -83,7 +83,7 @@
                         <div class="card-body">
 
                             <h5 class="card-title">@(p.Titolo) </h5>
-                            <img class="copertinaHome" src="https://images-na.ssl-images-amazon.com/images/I/61xSNpivMML.jpg" width="300px" height="400px" />
+                            <img class="copertinaHome" src="@(p.Copertina)" width="300px" height="400px" />
                             <a href="#" class="btn btn-danger">Dettagli</a>
                         </div>
                     </div>

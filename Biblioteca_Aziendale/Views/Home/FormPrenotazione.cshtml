@@ -1,5 +1,6 @@
 ﻿@model Biblioteca_Aziendale.Models.Libro
 @using Biblioteca_Aziendale.Controllers
+@using Biblioteca_Aziendale.Models
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Biblioteca Aziendale - Admin Dashboard</title>
+    <title>Biblioteca Aziendale - Prenotazione</title>
 
     <!-- Custom fonts for this template-->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -38,40 +39,6 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Ciao @LoginController.utenteLoggato.Nome</div>
             </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/Login/Admin">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="/Login/ElencoAdmin" aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Elenco Libri</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Login/FormInserimentoAdmin" aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Inserisci Nuova Copia</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Impostazioni
-            </div>
 
             </li>
 
@@ -141,55 +108,27 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <form style="margin-left:10px;margin-top:10px;" action="/Login/ModificaLibro">
+                        <p>Stai prenotando il libro @Model.Id</p>
+                        <form style="margin-left:10px;margin-top:10px;" action="/Home/NuovoPrestito">
                             <div class="mb-3">
-                                <input type="hidden" class="form-control" id="id" name="id" size="50" value="@Model.Id" readonly>
-
-                                <label class="form-label">Titolo</label>
-                                <input type="text" class="form-control" id="titolo" name="titolo" size="50" value="@Model.Titolo">
+                                <label class="form-label">Data Inizio</label>
+                                <input type="date" class="form-control" id="datainizio" name="datainizio">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">ISBN</label>
-                                <input type="text" class="form-control" id="isbn" name="isbn" value="@Model.Isbn">
+                                <label class="form-label">Data Fine</label>
+                                <input type="date" class="form-control" id="datafine" name="datafine">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Descrizione</label>
-                                <textarea type="text" rows="10" cols="10" class="form-control" id="descrizione" name="descrizione" value="@Model.Descrizione">@Model.Descrizione</textarea>
+                                <label class="form-label">Id Utente</label>
+                                <input type="text" rows="10" cols="10" class="form-control" id="idutente" name="idutente" value="@LoginController.utenteLoggato.Id">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Copertina</label>
-                                <input type="text" class="form-control" id="copertina" name="copertina" value="@Model.Copertina">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Numero Pagine</label>
-                                <input type="number" class="form-control" id="nPagine" name="npagine" value="@Model.NPagine">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Genere</label>
-                                <input type="text" class="form-control" id="genere" name="genere" value="@Model.Genere">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Scaffale</label>
-                                <input type="text" class="form-control" id="scaffale" name="scaffale" value="@Model.Scaffale">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Anno Pubblicazione</label>
-                                <input type="number" class="form-control" id="annoPubblicazione" name="annopubblicazione" value="@Model.AnnoPubblicazione">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Casa Editrice</label>
-                                <input type="text" class="form-control" id="casaEditrice" name="casaeditrice" value="@Model.CasaEditrice">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Disponibile</label>
-                                <select class="custom-select mr-sm-2" id="disponibile" name="disponibile">
-                                    <option name="disponibile" value="Si">Si</option>
-                                    <option name="disponibile" value="No">No</option>
-                                </select>
-                                
+                                <label class="form-label">IdLibro</label>
+                                <input type="text" class="form-control" id="idlibro" name="idlibro" value="@Model.Id">
                             </div>
 
-                            <input type="submit" class="btn btn-primary" value="Modifica" />
+
+                            <input type="submit" class="btn btn-primary" value="Prenota" />
                         </form>
 
                     </div>

@@ -1,5 +1,4 @@
-﻿@model Biblioteca_Aziendale.Models.Libro
-@using Biblioteca_Aziendale.Controllers
+﻿@using Biblioteca_Aziendale.Controllers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -141,55 +140,46 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <form style="margin-left:10px;margin-top:10px;" action="/Login/ModificaLibro">
+                        <form style="margin-left:10px;margin-top:10px;" action="/Login/NuovoLibro">
                             <div class="mb-3">
-                                <input type="hidden" class="form-control" id="id" name="id" size="50" value="@Model.Id" readonly>
 
                                 <label class="form-label">Titolo</label>
-                                <input type="text" class="form-control" id="titolo" name="titolo" size="50" value="@Model.Titolo">
+                                <input type="text" class="form-control" id="titolo" name="titolo" size="50">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">ISBN</label>
-                                <input type="text" class="form-control" id="isbn" name="isbn" value="@Model.Isbn">
+                                <input type="text" class="form-control" id="isbn" name="isbn">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Descrizione</label>
-                                <textarea type="text" rows="10" cols="10" class="form-control" id="descrizione" name="descrizione" value="@Model.Descrizione">@Model.Descrizione</textarea>
+                                <input type="text" class="form-control" id="descrizione" name="descrizione">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Copertina</label>
-                                <input type="text" class="form-control" id="copertina" name="copertina" value="@Model.Copertina">
+                                <input type="text" class="form-control" id="copertina" name="copertina">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Numero Pagine</label>
-                                <input type="number" class="form-control" id="nPagine" name="npagine" value="@Model.NPagine">
+                                <input type="number" class="form-control" id="nPagine" name="npagine">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Genere</label>
-                                <input type="text" class="form-control" id="genere" name="genere" value="@Model.Genere">
+                                <input type="text" class="form-control" id="genere" name="genere">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Scaffale</label>
-                                <input type="text" class="form-control" id="scaffale" name="scaffale" value="@Model.Scaffale">
+                                <input type="text" class="form-control" id="scaffale" name="scaffale">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Anno Pubblicazione</label>
-                                <input type="number" class="form-control" id="annoPubblicazione" name="annopubblicazione" value="@Model.AnnoPubblicazione">
+                                <input type="number" class="form-control" id="annoPubblicazione" name="annopubblicazione">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Casa Editrice</label>
-                                <input type="text" class="form-control" id="casaEditrice" name="casaeditrice" value="@Model.CasaEditrice">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Disponibile</label>
-                                <select class="custom-select mr-sm-2" id="disponibile" name="disponibile">
-                                    <option name="disponibile" value="Si">Si</option>
-                                    <option name="disponibile" value="No">No</option>
-                                </select>
-                                
+                                <input type="text" class="form-control" id="casaEditrice" name="casaeditrice">
                             </div>
 
-                            <input type="submit" class="btn btn-primary" value="Modifica" />
+                            <input type="submit" class="btn btn-primary" value="Inserisci" />
                         </form>
 
                     </div>

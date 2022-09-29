@@ -60,7 +60,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="/Login/FormInserimentoAdmin/" aria-expanded="true" aria-controls="collapseTwo">
                     <span>Inserisci Nuova Copia</span>
                 </a>
             </li>
@@ -161,7 +161,7 @@
                                                     {
                                                         <tr>
                                                             <td>
-                                                                <img src="https://images-na.ssl-images-amazon.com/images/I/61xSNpivMML.jpg" style="width:10%" height="10%" alt="">
+                                                                <img src="@(l.Copertina)" style="width:10%" height="10%" alt="">
                                                                 <a class="user-link">@(l.Titolo)</a>
                                                             </td>
                                                             <td>
@@ -171,7 +171,7 @@
                                                                 @(l.AnnoPubblicazione)
                                                             </td>
                                                             <td class="text-center">
-                                                                <span class="label label-default">Inactive</span>
+                                                                <span class="label label-default">@(l.Disponibile)</span>
                                                             <td style="width: 20%;">
                                                                 <a href="/Login/FormModificaAdmin/@l.Id" class="btn btn-primary">Modifica</a>
 

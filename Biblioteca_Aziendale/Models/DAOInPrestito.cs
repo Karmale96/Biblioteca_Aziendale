@@ -48,8 +48,8 @@ namespace Biblioteca_Aziendale.Models
             string query = $"UPDATE InPrestito SET " +
                            $"dataInizio = '{prestito.DataInizio}'," +
                            $"dataFine = '{prestito.DataFine}'," +
-                           $"idUtente = {prestito.IdUtente.Id}," +
-                           $"idLibro = {prestito.IdLibro.Id} " +
+                           $"idUtente = {prestito.IdUtente}," +
+                           $"idLibro = {prestito.IdLibro} " +
                            $"WHERE id = {prestito.Id}";
 
             return db.Send(query);
@@ -62,8 +62,19 @@ namespace Biblioteca_Aziendale.Models
             string query = $"INSERT INTO InPrestito " +
                            $"(dataInizio,dataFine,idUtente,idLibro) " +
                            $"VALUES " +
-                           $"('{prestito.DataInizio}','{prestito.DataFine}',{prestito.IdUtente.Id},{prestito.IdLibro.Id}')";
+                           $"('{prestito.DataInizio}','{prestito.DataFine}',{prestito.IdUtente},{prestito.IdLibro}')";
 
+            return db.Send(query);
+        }
+
+        public bool InsertOrdine(Entity e, int id)
+        {
+            InPrestito prestito = (InPrestito)e;
+
+            string query= $"INSERT INTO inPrestito " +
+                          $"(dataInizio,dataFine,idUtente,idLibro) " +
+                          $"VALUES " +
+                          $"('{prestito.DataInizio.ToString("yyyy-MM-dd")}','{prestito.DataFine.ToString("yyyy-MM-dd")}',{id},{prestito.IdLibro})";
             return db.Send(query);
         }
 

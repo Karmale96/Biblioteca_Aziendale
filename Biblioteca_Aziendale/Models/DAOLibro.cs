@@ -85,12 +85,38 @@ namespace Biblioteca_Aziendale.Models
                            $"genere = '{libro.Genere}'," +
                            $"scaffale = '{libro.Scaffale}'," +
                            $"annoPubblicazione = {libro.AnnoPubblicazione}," +
-                           $"casaEditrice = '{libro.CasaEditrice}' " +
+                           $"casaEditrice = '{libro.CasaEditrice}'," +
+                           $"disponibile = '{libro.Disponibile}' " +
                            $"WHERE id = {libro.Id}";
 
             return db.Send(query);
         }
 
+        public bool UpdatePrenotato(Entity e)
+        {
+            Libro libro = (Libro)e;
+            return db.Send($"UPDATE Libri SET " +
+                           $"titolo = '{libro.Titolo}'," +
+                           $"isbn = '{libro.Isbn}'," +
+                           $"descrizione = '{libro.Descrizione}'," +
+                           $"copertina = '{libro.Copertina}'," +
+                           $"nPagine = {libro.NPagine}," +
+                           $"genere = '{libro.Genere}'," +
+                           $"scaffale = '{libro.Scaffale}'," +
+                           $"annoPubblicazione = {libro.AnnoPubblicazione}," +
+                           $"casaEditrice = '{libro.CasaEditrice}'," +
+                           $"disponibile = 'No' " +
+                           $"WHERE id = {e.Id}"
+                );
+        }
+
+        public bool UpdatePrenota(int id)
+        {
+            return db.Send($"UPDATE Libri SET " +
+                           $"disponibile = 'No' " +
+                           $"WHERE id = {id}"
+                );
+        }
         public bool Insert(Entity e)
         {
             Libro libro = (Libro)e;

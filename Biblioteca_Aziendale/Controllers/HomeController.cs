@@ -23,6 +23,30 @@ namespace Biblioteca_Aziendale.Controllers
         {
             return View(DAOLibro.GetInstance().ReadLike(valore));
         }
+
+        public IActionResult Elenco()
+        {
+            return View(DAOLibro.GetInstance().Read());
+        }
+
+        public IActionResult NuovoPrestito(Dictionary<string, string> parametri)
+        {
+            InPrestito p = new InPrestito();
+            p.FromDictionary(parametri);
+
+            if (DAOLibro.GetInstance().UpdatePrenota(p.IdLibro))
+            {
+                if (DAOInPrestito.GetInstance().InsertOrdine(p, LoginController.utenteLoggato.Id))
+                    return Redirect("/Home/Index");
+            }
+            return Content("Inserimento Update o inserimento prenotazione fallita: Contattare l'amministratore");
+        }
+
+        public IActionResult FormPrenotazione(int id)
+        {
+            Libro l = (Libro)DAOLibro.GetInstance().Find(id);
+            return View(l);
+        }
     }
 }
 
