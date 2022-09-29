@@ -93,6 +93,11 @@ namespace Biblioteca_Aziendale.Controllers
             return View(DAOLibro.GetInstance().Read());
         }
 
+        public IActionResult ElencoPrestiti()
+        {
+            return View(DAOInPrestito.GetInstance().Read());
+        }
+
         public IActionResult FormModificaAdmin(int id)
         {
             Libro l = (Libro)DAOLibro.GetInstance().Find(id);

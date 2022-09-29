@@ -1,34 +1,46 @@
-body{
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container{
+.container {
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
-.card{
+.row-container {
+    margin-top: 5%;
+}
+
+.card {
     text-align: center;
 }
 
-.vetrina{
+.vetrina {
     text-align: center;
-    margin-bottom: 5%;
 }
 
-.copertinaHome{
+.linea-titolo {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin: auto;
+    width: 500px;
+    border: 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.382);
+}
+
+.copertinaHome {
     margin-bottom: 5%;
 }
 
 /* stile della search-bar INIZIO */
 
-.searchbar{
+.searchbar {
     display: grid;
     margin-top: 100px;
     margin-bottom: 15%;
-  }
-  
-.form-group{
+}
+
+.form-group {
     justify-self: center;
     align-self: center;
     border: 3px solid red;
@@ -36,14 +48,14 @@ body{
     border-radius: 26px;
     padding: 5px 15px;
 }
-  
-.form-control{
+
+.form-control {
     width: 350px;
     height: 40px;
-    border : none;
+    border: none;
 }
-  
-.search-btn{
+
+.search-btn {
     float: right;
     width: 34px;
     height: 36px;
@@ -52,32 +64,123 @@ body{
     border: none;
     background: #fff;
 }
-  
-input[type="text"]{
-  outline: none;
-  box-shadow: none !important;
+
+input[type="text"] {
+    outline: none;
+    box-shadow: none !important;
 }
 
 /* stile della search-bar FINE */
 
-.titolo-home{
+.titolo-home {
     text-align: center;
     font-size: 48px;
 }
 
-.container-titolo{
+.container-titolo {
     margin-top: 150px;
-
 }
 
-.subtit-home{
+.subtit-home {
     text-align: center;
 }
 
-footer{
+footer {
     background-color: rgb(195, 50, 50);
 }
 
+/*
 .container{
     margin-bottom: 200px;
+}
+*/
+
+.card-text {
+    padding: 5%;
+}
+
+.card-title {
+    margin-bottom: 5%;
+}
+
+.container-vetrina {
+    margin-top: 200px;
+}
+
+
+blockquote {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    padding: 20px 20px 20px 40px;
+    border-left: none;
+    position: relative;
+    text-indent: -19px
+}
+
+section#block_content {
+    text-align: left;
+}
+
+blockquote p {
+    font-size: 1em
+}
+
+blockquote:before,
+blockquote:after {
+    font-family: Arial, serif;
+    font-size: 2.5em;
+    vertical-align: middle;
+    line-height: 0
+}
+
+blockquote:before {
+    content: open-quote;
+    margin-right: 4px
+}
+
+blockquote:after {
+    content: close-quote;
+    margin-left: 3px
+}
+
+blockquote.blockstyle,
+blockquote.style2 {
+    background: #fff;
+    font-style: italic;
+}
+
+    blockquote.blockstyle p,
+    blockquote.style2 p {
+        display: inline;
+    }
+
+blockquote.blockstyle {
+    border-left: 3px solid rgb(195, 50, 50);
+    position: relative;
+}
+
+    blockquote.blockstyle > span.triangle:before {
+        text-indent: 0;
+        content: "\f0da";
+        font-family: FontAwesome;
+        color: rgb(195, 50, 50);
+        position: absolute;
+        left: -1px;
+        top: 50%;
+        margin-top: -11px;
+        font-style: normal;
+    }
+
+    blockquote.blockstyle:before,
+    blockquote.blockstyle:after {
+        color: rgb(195, 50, 50);
+    }
+
+.cit {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.separator-home {
+    margin-top: 100px;
 }
