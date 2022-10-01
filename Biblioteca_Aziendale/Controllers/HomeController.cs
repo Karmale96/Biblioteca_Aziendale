@@ -15,7 +15,7 @@ namespace Biblioteca_Aziendale.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Entity> entities = DAOLibro.GetInstance().ReadDistinct();
+            List<Entity> entities = DAOLibro.GetInstance().ReadFullDistinct();
             return View(entities);
         }
 
@@ -26,7 +26,7 @@ namespace Biblioteca_Aziendale.Controllers
 
         public IActionResult Elenco()
         {
-            return View(DAOLibro.GetInstance().Read());
+            return View(DAOLibro.GetInstance().ReadFull());
         }
 
         public IActionResult NuovoPrestito(Dictionary<string, string> parametri)

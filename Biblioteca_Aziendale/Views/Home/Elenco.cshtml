@@ -68,7 +68,8 @@
                                         <td>
                                             <img src="@(((Libro)l).Copertina)" style="width:10%" height="10%" alt="">
                                             <a class="user-link">@(((Libro)l).Titolo)</a>
-                                            <span class="user-subhead">@(((Libro)l).CasaEditrice)</span>
+                                            <span class="user-subhead">Autore: @(((Libro)l).Nome) @(((Libro)l).Cognome)</span><br />
+                                            <span class="user-subhead">Casa Editrice: @(((Libro)l).CasaEditrice)</span>
                                         </td>
                                         <td>
                                             @(((Libro)l).AnnoPubblicazione)

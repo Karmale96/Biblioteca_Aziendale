@@ -17,6 +17,8 @@ namespace Biblioteca_Aziendale.Models
         public int AnnoPubblicazione { get; set; }
         public string CasaEditrice { get; set; }
         public string Disponibile { get; set; }
+        public string Nome { get; set; }
+        public string Cognome { get; set; }
     }
 }
 

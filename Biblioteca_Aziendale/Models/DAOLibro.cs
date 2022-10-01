@@ -38,7 +38,7 @@ namespace Biblioteca_Aziendale.Models
         public List<Entity> ReadDistinct()
         {
             List<Entity> ris = new List<Entity>();
-            List<Dictionary<string, string>> tabella = db.Read("SELECT titolo, descrizione, copertina, genere FROM Libri GROUP BY titolo, descrizione, copertina, genere;\n");
+            List<Dictionary<string, string>> tabella = db.Read("SELECT titolo, descrizione, copertina, genere FROM Libri GROUP BY titolo, descrizione, copertina, genere;");
 
             foreach (Dictionary<string, string> riga in tabella)
             {
@@ -67,7 +67,37 @@ namespace Biblioteca_Aziendale.Models
             return ris;
         }
 
-        public bool Delete(int id)
+        public List<Entity> ReadFullDistinct()
+        {
+            List<Entity> ris = new List<Entity>();
+            List<Dictionary<string, string>> tabella = db.Read($"select titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome from Libri inner join ScrittoDa ON scrittoda.idLibro = libri.id INNER JOIN Autori on autori.id = ScrittoDa.idAutore group by titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome;");
+            foreach(Dictionary<string,string> riga in tabella)
+            {
+                Libro l = new Libro();
+                l.FromDictionary(riga);
+
+
+                ris.Add(l);
+            }
+            return ris;
+        }
+
+        public List<Entity> ReadFull()
+        {
+            List<Entity> ris = new List<Entity>();
+            List<Dictionary<string, string>> tabella = db.Read($"select titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome from Libri inner join ScrittoDa ON scrittoda.idLibro = libri.id INNER JOIN Autori on autori.id = ScrittoDa.idAutore;");
+            foreach (Dictionary<string, string> riga in tabella)
+            {
+                Libro l = new Libro();
+                l.FromDictionary(riga);
+
+
+                ris.Add(l);
+            }
+            return ris;
+        }
+
+            public bool Delete(int id)
         {
             return db.Send($"DELETE FROM Libri WHERE id = {id}");
         }

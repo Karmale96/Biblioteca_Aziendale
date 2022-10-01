@@ -106,7 +106,16 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <div class="card-body">
+                                    <h5 class="card-title">@(p.Titolo) </h5>
+                                    <p class="card-text">Descrizione: @(p.Descrizione)</p>
+                                    <p class="card-text">Scritto da: @(p.Nome) @(p.Cognome)</p>
+                                    <p class="card-text">Edito da: @(p.CasaEditrice)</p>
+                                    <p class="card-text">Numero Pagine: @(p.NPagine)</p>
+                                    <p class="card-text">Genere: @(p.Genere)</p>
+                                    <!-- Modal -->
+
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>

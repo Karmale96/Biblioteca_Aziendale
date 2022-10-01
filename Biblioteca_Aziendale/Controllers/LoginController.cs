@@ -59,7 +59,7 @@ namespace Biblioteca_Aziendale.Controllers
                 utenteLoggato = DAOUtente.GetInstance().Cerca(parametri["username"]);
                 if(utenteLoggato.Ruolo == "admin")
                 {
-                    return RedirectToAction("Admin", "Login");
+                    return RedirectToAction("ElencoAdmin", "Login");
                 }
                 else
                 {

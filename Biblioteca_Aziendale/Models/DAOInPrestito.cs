@@ -23,9 +23,7 @@ namespace Biblioteca_Aziendale.Models
         public List<Entity> Read()
         {
             List<Entity> ris = new List<Entity>();
-            List<Entity> ris2 = new List<Entity>();
             List<Dictionary<string, string>> tabella1 = db.Read("SELECT dataInizio, dataFine, idUtente,idLibro, nome, cognome, titolo FROM InPrestito inner join Utenti on inPrestito.idUtente = utenti.id inner join Libri on Libri.id = inPrestito.idLibro");
-           /* List<Dictionary<string, string>> tabella2 = db.Read("select  from inPrestito inner join Utenti on inPrestito.idUtente = utenti.id inner join Libri on Libri.id = inPrestito.idLibro");*/
 
             foreach (Dictionary<string, string> riga in tabella1)
             {
@@ -35,14 +33,7 @@ namespace Biblioteca_Aziendale.Models
                 ris.Add(prestito);
             }
 
-           /* foreach (Dictionary<string, string> riga in tabella2)
-            {
-                InPrestito prestito2 = new InPrestito();
-                prestito2.FromDictionary(riga);
-
-                ris.Add(prestito2);
-            }
-           */
+   
 
             return ris;
         }
