@@ -8,7 +8,7 @@ namespace Biblioteca_Aziendale.Models
 
         public string Nome { get; set; }
         public string Cognome { get; set; }
-        public DateOnly Dob { get; set; }
+        public DateTime Dob { get; set; }
     }
 }
 
