@@ -1,6 +1,8 @@
-﻿@model List<Utility.Entity>
+﻿@using Biblioteca_Aziendale.Models
 @using Biblioteca_Aziendale.Controllers
-@using Biblioteca_Aziendale.Models
+@model List<Utility.Entity>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Biblioteca Aziendale - Admin Dashboard</title>
+    <title>Biblioteca Aziendale - User Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -45,18 +47,8 @@
 
             <!-- Nav Item - Pages Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="/Login/ElencoAdmin" aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Elenco Libri</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Login/FormInserimentoAdmin/" aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Inserisci Nuova Copia</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Login/ElencoPrestiti/" aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Visualizza Prestiti</span>
+                <a class="nav-link" href="/Login/UserAccount/@LoginController.utenteLoggato.Id" aria-expanded="true" aria-controls="collapseTwo">
+                    <span>Le mie Prenotazioni</span>
                 </a>
             </li>
 
@@ -123,6 +115,7 @@
                             </div>
                         </li>
                     </ul>
+
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -130,59 +123,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 active">Elenco Libri</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Elenco Prestiti</h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="main-box clearfix">
-                                        <div class="table-responsive">
-                                            <table class="table user-list">
-                                                <thead>
-                                                    <tr>
-                                                        <th><span>Titolo</span></th>
-                                                        <th><span>Casa Editrice</span></th>
-                                                        <th><span>Anno Pubblicazione</span></th>
-                                                        <th class="text-center"><span>Disponibile</span></th>
-                                                        <th><span></span></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (Libro l in Model)
-                                                    {
-                                                        <tr>
-                                                            <td>
-                                                                <img src="@(l.Copertina)" style="width:10%" height="10%" alt="">
-                                                                <a class="user-link">@(l.Titolo)</a>
-                                                            </td>
-                                                            <td>
-                                                                @(l.CasaEditrice)
-                                                            </td>
-                                                            <td>
-                                                                @(l.AnnoPubblicazione)
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <span class="label label-default">@(l.Disponibile)</span>
-                                                            <td style="width: 20%;">
-                                                                <a href="/Login/FormModificaAdmin/@l.Id" class="btn btn-primary">Modifica</a>
 
-                                                            </td>
-                                                            <td>
-                                                                <a href="/Login/Elimina/@l.Id" class="btn btn-danger">Elimina</a>
-
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -199,12 +145,65 @@
 
                     <!-- Content Row -->
                     <div class="row">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="main-box clearfix">
+                                        <div class="table-responsive">
+                                            <table class="table user-list">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span>Data Inizio</span></th>
+                                                        <th><span>Data Fine</span></th>
+                                                        <th><span>Id Libro</span></th>
+                                                        <th class="text-center"><span>Id Utente</span></th>
+                                                        <th><span></span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (InPrestito ip in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <a class="user-link">@(ip.DataInizio.ToShortDateString())</a>
+                                                            </td>
+                                                            <td>
+                                                                @(ip.DataFine.ToShortDateString())
+                                                            </td>
+                                                            <td>
+                                                                @(ip.Titolo)
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="label label-default"> @(ip.Nome) @(ip.Cognome)</span>
+                                                            <td>
+                                                                <a href="/Login/AggiornaDisponibilita/@ip.IdLibro" id="aggiorna" onclick="alert('Disponibilità aggiornata');" class="btn btn-primary">Aggiorna Disponibilità</a>
 
+                                                            </td>
+                                                            <td>
+                                                                <a href="/Login/EliminaPrenotazione/@ip.Id" class="btn btn-danger" onclick="return confirm('Hai aggiornato la disponibilità?');">Elimina</a>
+
+                                                            </td>
+
+                                                        </tr>
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
+
+
+
                             <!-- Color System -->
                             <div class="row">
+
                             </div>
+
                         </div>
 
                         <div class="col-lg-6 mb-4">
@@ -248,5 +247,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="~/js/site.js"></script>
+
+
+
 </body>
+
 </html>

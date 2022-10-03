@@ -38,6 +38,23 @@ namespace Biblioteca_Aziendale.Models
             return ris;
         }
 
+        public List<Entity> ReadId(int id)
+        {
+            List<Entity> ris = new List<Entity>();
+            List<Dictionary<string, string>> tabella1 = db.Read($"SELECT inprestito.id, dataInizio, dataFine, idUtente,idLibro, nome, cognome, titolo FROM InPrestito inner join Utenti on inPrestito.idUtente = utenti.id inner join Libri on Libri.id = inPrestito.idLibro WHERE inPrestito.idUtente = {id};");
+
+            foreach (Dictionary<string, string> riga in tabella1)
+            {
+                InPrestito prestito = new InPrestito();
+                prestito.FromDictionary(riga);
+
+                ris.Add(prestito);
+            }
+
+            return ris;
+        }
+
+
         public bool Delete(int id)
         {
             return db.Send($"DELETE FROM InPrestito WHERE id = {id}");

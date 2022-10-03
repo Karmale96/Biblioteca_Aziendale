@@ -38,11 +38,26 @@
                 </ul>
                 @if (LoginController.utenteLoggato != null)
                 {
-                    <li class="nav-item" style="list-style-type: none;">
-                        <a class="nav-link">Ciao @LoginController.utenteLoggato.Nome </a>
-                    </li>
-                    <a style="align-content:center;" class="btn btn-danger btn-sm nav-link" href="/Login/Logout">Esci</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Ciao @LoginController.utenteLoggato.Nome</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            @if (LoginController.utenteLoggato.Ruolo == "user")
+                            {
+                                <a class="dropdown-item" href="/Login/UserAccount/@LoginController.utenteLoggato.Id">Profilo</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item" href="/Login/ElencoAdmin/">Dashboard</a>
 
+                            }
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/Login/Logout" onclick="return confirm('Sei sicuro di voler uscire?');">Esci</a>
+                        </div>
+                    </div>
                 }
                 else
                 {
@@ -61,7 +76,7 @@
     </div>
 
     <!-- search-bar -->
-    <form class="searchbar" name="input" action="/Home/ElencoLike/valore" method="get">
+    <form class="searchbar" name="input" action="/Home/ElencoLike/valore" method="get" onsubmit="return controlla_login()">
         <div class="form-group">
             <input id="input" type="text" class="form-control" placeholder="Cerca..." name="valore">
             <button class="search-btn">
@@ -107,7 +122,6 @@
                             </div>
                             <div class="modal-body">
                                 <div class="card-body">
-                                    <h5 class="card-title">@(p.Titolo) </h5>
                                     <p class="card-text">Descrizione: @(p.Descrizione)</p>
                                     <p class="card-text">Scritto da: @(p.Nome) @(p.Cognome)</p>
                                     <p class="card-text">Edito da: @(p.CasaEditrice)</p>

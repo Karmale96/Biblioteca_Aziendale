@@ -35,9 +35,26 @@
 
                 @if (LoginController.utenteLoggato != null)
                 {
-                    <li class="nav-item" style="list-style-type: none;">
-                        <a class="nav-link">Ciao @LoginController.utenteLoggato.Nome </a>
-                    </li>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Ciao @LoginController.utenteLoggato.Nome</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            @if (LoginController.utenteLoggato.Ruolo == "user")
+                            {
+                                <a class="dropdown-item" href="/Login/UserAccount/@LoginController.utenteLoggato.Id">Profilo</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item" href="/Login/ElencoAdmin/">Dashboard</a>
+
+                            }
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/Login/Logout" onclick="return confirm('Sei sicuro di voler uscire?');">Esci</a>
+                        </div>
+                    </div>
                 }
                 else
                 {
@@ -56,6 +73,7 @@
                             <thead>
                                 <tr>
                                     <th><span>Titolo</span></th>
+                                    <th><span>Autore</span></th>
                                     <th><span>Anno Pubblicazione</span></th>
                                     <th class="text-center"><span>Disponibile</span></th>
                                     <th><span>Prenotazione</span></th>
@@ -68,9 +86,9 @@
                                         <td>
                                             <img src="@(((Libro)l).Copertina)" style="width:10%" height="10%" alt="">
                                             <a class="user-link">@(((Libro)l).Titolo)</a>
-                                            <span class="user-subhead">Autore: @(((Libro)l).Nome) @(((Libro)l).Cognome)</span><br />
                                             <span class="user-subhead">Casa Editrice: @(((Libro)l).CasaEditrice)</span>
                                         </td>
+                                        <td>@(((Libro)l).Nome) @(((Libro)l).Cognome)</td>
                                         <td>
                                             @(((Libro)l).AnnoPubblicazione)
                                         </td>
@@ -82,10 +100,11 @@
                                                 if (LoginController.utenteLoggato != null)
                                                 {
                                                     <a class="btn btn-primary" href="/Home/FormPrenotazione/@(((Libro)l).Id)">Prenota</a>
-                                                } else
-                    {
-                                        <a>Entra per prenotare</a>
-                    }
+                                                }
+                                                else
+                                                {
+                                                    <a>Entra per prenotare</a>
+                                                }
                                             }
                                             else
                                             {
@@ -105,5 +124,11 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>

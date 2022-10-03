@@ -58,7 +58,7 @@ namespace Biblioteca_Aziendale.Models
 
         public bool Inserisci(Utente u)
         {
-            return db.Send($"INSERT INTO Utenti (nome,cognome,dob,indirizzo,ruolo,username, psw) VALUES ('{u.Nome}','{u.Cognome}','{u.Dob}','{u.Indirizzo}','{u.Ruolo}','{u.Username}','{u.Psw}')");
+            return db.Send($"INSERT INTO Utenti (nome,cognome,dob,indirizzo,ruolo,username, psw) VALUES ('{u.Nome}','{u.Cognome}','{u.Dob.ToString("yyyy-MM-dd")}','{u.Indirizzo}','{u.Ruolo}','{u.Username}','{u.Psw}')");
         }
 
         public bool Delete(int id)

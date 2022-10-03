@@ -37,6 +37,8 @@ namespace Biblioteca_Aziendale.Controllers
             return View();
         }
 
+        
+
         public IActionResult Salva(Dictionary<string, string> parametri)
         {
             Utente u = new Utente();
@@ -44,7 +46,7 @@ namespace Biblioteca_Aziendale.Controllers
             u.FromDictionary(parametri);
 
             if (DAOUtente.GetInstance().Inserisci(u))
-                return Content("Registrazione avvenuta con successo");
+                return RedirectToAction("Successo","Home");
             else
                 return Content("Registrazione fallita");
         }
@@ -63,7 +65,7 @@ namespace Biblioteca_Aziendale.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserAccount", "Login");
                 }
                 
             }
@@ -77,6 +79,13 @@ namespace Biblioteca_Aziendale.Controllers
 
             il.LogInformation($"Tentativo Numero: {chiamata}");
             return View(chiamata);
+        }
+
+        public IActionResult UserAccount(int id)
+        {
+            chiamata++;
+
+            return View(DAOInPrestito.GetInstance().ReadId(utenteLoggato.Id));
         }
 
         public IActionResult Logout()
@@ -120,6 +129,28 @@ namespace Biblioteca_Aziendale.Controllers
         {
             if (DAOLibro.GetInstance().Delete(id))
                 return Redirect("/Login/ElencoAdmin");
+            else
+                return Content("Eliminazione Fallita");
+        }
+
+        public ActionResult AggiornaDisponibilita(int id)
+        {
+            if (DAOLibro.GetInstance().UpdatePrenota2(id))
+            {
+                return Redirect("/Login/UserAccount");
+            }
+            else
+                return Content("Aggiornamento Fallito");
+        }
+
+
+        public IActionResult EliminaPrenotazione(int id)
+        {
+            if (DAOInPrestito.GetInstance().Delete(id))
+            {
+                return Redirect("/Login/UserAccount");
+            }
+                
             else
                 return Content("Eliminazione Fallita");
         }

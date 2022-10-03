@@ -54,7 +54,7 @@ namespace Biblioteca_Aziendale.Models
         public List<Entity> ReadLike(string valore)
         {
             List<Entity> ris = new List<Entity>();
-            List<Dictionary<string, string>> tabella = db.Read($"SELECT * FROM Libri WHERE titolo LIKE '%{valore}%' ");
+            List<Dictionary<string, string>> tabella = db.Read($"SELECT titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome FROM Libri INNER JOIN ScrittoDa ON ScrittoDa.idLibro = Libri.id INNER JOIN Autori ON Autori.id = ScrittoDa.idAutore WHERE titolo LIKE '%{valore}%' OR Autori.nome LIKE '%{valore}%' OR Autori.cognome LIKE '%{valore}%';");
 
             foreach (Dictionary<string, string> riga in tabella)
             {
@@ -85,7 +85,7 @@ namespace Biblioteca_Aziendale.Models
         public List<Entity> ReadFull()
         {
             List<Entity> ris = new List<Entity>();
-            List<Dictionary<string, string>> tabella = db.Read($"select titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome from Libri inner join ScrittoDa ON scrittoda.idLibro = libri.id INNER JOIN Autori on autori.id = ScrittoDa.idAutore;");
+            List<Dictionary<string, string>> tabella = db.Read($"select Libri.id, titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome from Libri inner join ScrittoDa ON scrittoda.idLibro = libri.id INNER JOIN Autori on autori.id = ScrittoDa.idAutore;");
             foreach (Dictionary<string, string> riga in tabella)
             {
                 Libro l = new Libro();
@@ -144,6 +144,15 @@ namespace Biblioteca_Aziendale.Models
         {
             return db.Send($"UPDATE Libri SET " +
                            $"disponibile = 'No' " +
+                           $"WHERE id = {id}"
+                );
+        }
+
+
+        public bool UpdatePrenota2(int id)
+        {
+            return db.Send($"UPDATE Libri SET " +
+                           $"disponibile = 'Si' " +
                            $"WHERE id = {id}"
                 );
         }

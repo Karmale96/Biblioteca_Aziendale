@@ -13,7 +13,7 @@
     <h2>Accedi o Registrati nella BibliotecaWeb Aziendale</h2>
     <div class="container" id="container">
         <div class="form-container sign-in-container">
-            <form action="/Login/Valida">
+            <form action="/Login/Valida" onsubmit="return controlla_login()">
                 <h1>Accedi</h1>
 
                 <input type="text" placeholder="Username" id="user" name="username" required />

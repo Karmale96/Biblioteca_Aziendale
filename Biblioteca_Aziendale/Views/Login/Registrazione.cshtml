@@ -21,21 +21,24 @@
                 <span>Inserisci i tuoi dati qui</span>
                 <div class="row">
                     <div class="col">
-                        <input type="text" id="nome" name="nome" placeholder="Nome" />
+                        <input type="text" id="nome" name="nome" placeholder="Nome" required/>
                     </div>
                     <div class="col">
-                        <input type="text" id="cognome" name="cognome" placeholder="Cognome" />
+                        <input type="text" id="cognome" name="cognome" placeholder="Cognome" required/>
                     </div>
                 </div>
-                <input type="text" id="username" name="username" placeholder="Username" />
-                <input type="date" id="dob" name="dob" min="1922-01-01" max="2022-12-31">
-                <input type="text" id="indirizzo" name="indirizzo" placeholder="Indirizzo" />
+                <input type="text" id="username" name="username" placeholder="Username" required/>
+                <input type="date" id="dob" name="dob" min="1922-01-01" max="2022-12-31" required>
+                <input type="text" id="indirizzo" name="indirizzo" placeholder="Indirizzo" required/>
                 <div class="row">
                     <div class="col">
-                        <input type="password" id="passw" name="psw" placeholder="Password" />
+                        <input type="password" id="psw" name="psw" placeholder="Password" required />
                     </div>
                     <div class="col">
-                        <input type="password" id="passw2" placeholder="Ripeti Password" />
+                        <input type="password" id="psw2" placeholder="Ripeti Password" required/>
+                    </div>
+                    <div>
+                        <input type="hidden" id="ruolo" name="ruolo" value="user" />
                     </div>
                 </div>
                 <button>Registrati</button>

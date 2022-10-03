@@ -108,23 +108,20 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <p>Stai prenotando il libro @Model.Id</p>
+                        <p>Stai prenotando il libro @Model.Titolo</p>
                         <form style="margin-left:10px;margin-top:10px;" action="/Home/NuovoPrestito">
                             <div class="mb-3">
                                 <label class="form-label">Data Inizio</label>
-                                <input type="date" class="form-control" id="datainizio" name="datainizio">
-                            </div>
+                                <input type="date" class="form-control" id="datainizio" name="datainizio" min="2022-01-01" onBlur="this.min=new Date().toISOString().split('T')[0]">
                             <div class="mb-3">
                                 <label class="form-label">Data Fine</label>
                                 <input type="date" class="form-control" id="datafine" name="datafine">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Id Utente</label>
-                                <input type="text" rows="10" cols="10" class="form-control" id="idutente" name="idutente" value="@LoginController.utenteLoggato.Id">
+                                <input type="hidden" rows="10" cols="10" class="form-control" id="idutente" name="idutente" value="@LoginController.utenteLoggato.Id">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">IdLibro</label>
-                                <input type="text" class="form-control" id="idlibro" name="idlibro" value="@Model.Id">
+                                <input type="hidden" class="form-control" id="idlibro" name="idlibro" value="@Model.Id">
                             </div>
 
 
@@ -200,6 +197,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="~/js/site.js"></script>
 
 
 

@@ -2,10 +2,14 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-$('.navTrigger').click(function () {
-    $(this).toggleClass('active');
-    console.log("Clicked menu");
-    $("#mainListDiv").toggleClass("show_list");
-    $("#mainListDiv").fadeIn();
 
-});
+// get the element
+function conta() {
+    const element = document.getElementById('aggiorna')
+    var counter = 0;
+    // always checking if the element is clicked, if so, do alert('hello')
+    element.addEventListener('click', () => {
+        counter = 1;
+    });
+    console.log(counter);
+};

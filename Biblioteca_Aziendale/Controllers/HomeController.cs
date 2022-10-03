@@ -37,9 +37,19 @@ namespace Biblioteca_Aziendale.Controllers
             if (DAOLibro.GetInstance().UpdatePrenota(p.IdLibro))
             {
                 if (DAOInPrestito.GetInstance().InsertOrdine(p, LoginController.utenteLoggato.Id))
-                    return Redirect("/Home/Index");
+                    return Redirect("/Home/SuccessoPrenotazione");
             }
             return Content("Inserimento Update o inserimento prenotazione fallita: Contattare l'amministratore");
+        }
+
+        public IActionResult Successo()
+        {
+            return View();
+        }
+
+        public IActionResult SuccessoPrenotazione()
+        {
+            return View();
         }
 
         public IActionResult FormPrenotazione(int id)
