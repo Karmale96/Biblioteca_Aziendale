@@ -54,7 +54,7 @@ namespace Biblioteca_Aziendale.Models
         public List<Entity> ReadLike(string valore)
         {
             List<Entity> ris = new List<Entity>();
-            List<Dictionary<string, string>> tabella = db.Read($"SELECT titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome FROM Libri INNER JOIN ScrittoDa ON ScrittoDa.idLibro = Libri.id INNER JOIN Autori ON Autori.id = ScrittoDa.idAutore WHERE titolo LIKE '%{valore}%' OR Autori.nome LIKE '%{valore}%' OR Autori.cognome LIKE '%{valore}%';");
+            List<Dictionary<string, string>> tabella = db.Read($"SELECT libri.id,titolo,isbn,descrizione,copertina,nPagine,genere,scaffale,annoPubblicazione,casaEditrice,disponibile,autori.nome,autori.cognome FROM Libri INNER JOIN ScrittoDa ON ScrittoDa.idLibro = Libri.id INNER JOIN Autori ON Autori.id = ScrittoDa.idAutore WHERE titolo LIKE '%{valore}%' OR Autori.nome LIKE '%{valore}%' OR Autori.cognome LIKE '%{valore}%';");
 
             foreach (Dictionary<string, string> riga in tabella)
             {
